@@ -5,6 +5,7 @@ class AbstractMelonOrder:
 
     def __init__(self, species, qty):
         """Initialize melon order attributes."""
+
         self.species = species
         self.qty = qty
         self.shipped = False
@@ -35,6 +36,7 @@ class AbstractMelonOrder:
 
 class DomesticMelonOrder(AbstractMelonOrder):
     """A melon order within the USA."""
+
     order_type = "domestic"
     tax = 0.08
     country_code = "USA"
@@ -42,6 +44,7 @@ class DomesticMelonOrder(AbstractMelonOrder):
 
 class InternationalMelonOrder(AbstractMelonOrder):
     """An international (non-US) melon order."""
+
     order_type = "international"
     tax = 0.17
 
@@ -57,17 +60,14 @@ class InternationalMelonOrder(AbstractMelonOrder):
         else:
             return total
 
-class GovernmentMelonOrder(AbstractMelonOrder):
-    order_type = "domestic"
-    country_code = "USA"
+class GovernmentMelonOrder(DomesticMelonOrder):
+    """A melon order from USA government"""
+
     tax = 0.0
     passed_inspection = False
 
     def mark_inspection(self, passed):
-        if passed:
-            self.passed_inspection = True
-        else:
-            self.passed_inspection = False
+        self.passed_inspection = passed
 
 
    
