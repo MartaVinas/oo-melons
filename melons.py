@@ -36,6 +36,8 @@ class AbstractMelonOrder:
             return randint(5,9)
 
     def is_rush_hour(self):
+        """Return if it is rush hour (8-11 Mon-Fri)"""
+
         return (datetime.now().weekday() in range(0,5)
             and datetime.now().hour in range(8,11))
 
