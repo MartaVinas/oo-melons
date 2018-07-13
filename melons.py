@@ -1,4 +1,6 @@
 """Classes for melon orders."""
+from random import randint
+
 
 class AbstractMelonOrder:
     """An abstract base class that other Melon Orders inherit from."""
@@ -13,14 +15,19 @@ class AbstractMelonOrder:
     def get_total(self):
         """Calculate price, including tax."""
 
+        base_price = self.get_base_price()
+
         if self.species.lower() == "christmas melon":
-            base_price = 5 * 1.5
-        else:
-            base_price = 5
+            base_price = base_price * 1.5
         
         total = (1 + self.tax) * self.qty * base_price
 
         return total
+
+    def get_base_price(self):
+        """Return Splurge-price"""
+
+        return randint(5,9)
 
 
     def mark_shipped(self):
